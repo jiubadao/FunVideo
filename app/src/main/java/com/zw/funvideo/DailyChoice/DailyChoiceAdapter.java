@@ -20,12 +20,23 @@ import java.util.List;
 
 public class DailyChoiceAdapter extends RecyclerView.Adapter<DailyChoiceAdapter.VideoItemViewHolder> {
 
+
+    public interface  Callbacks{
+        void onVideoItemClicked(ItemList itemList);
+    }
+
+    public DailyChoiceAdapter(Callbacks callbacks) {
+        this.mCallbacks = callbacks;
+    }
+
+    private Callbacks  mCallbacks;
     private List<ItemList> mItems;
+
     @Override
     public VideoItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_video,parent,false);
-        return new VideoItemViewHolder(view);
+        return new VideoItemViewHolder(view,mCallbacks);
     }
 
     @Override
@@ -49,15 +60,27 @@ public class DailyChoiceAdapter extends RecyclerView.Adapter<DailyChoiceAdapter.
         private TextView videoDescTv;
         private TextView authorTagTv;
         private static final String VIDEO_TAG = "video";
-        public VideoItemViewHolder(View itemView) {
+        private Callbacks mCallbacks;
+        private ItemList mItem;
+        public VideoItemViewHolder(View itemView,Callbacks callbacks) {
             super(itemView);
             videoCoverIv = itemView.findViewById(R.id.video_cover);
             videoDescTv = itemView.findViewById(R.id.video_desc);
             authorTagTv = itemView.findViewById(R.id.author_tag);
+            mCallbacks = callbacks;
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                if(mCallbacks!=null&&mItem!=null){
+                    mCallbacks.onVideoItemClicked(mItem);
+                }
+                }
+            });
         }
 
 
         public void bind(ItemList item){
+            mItem = item;
             if (item.type.contains(VIDEO_TAG)) {
 
 

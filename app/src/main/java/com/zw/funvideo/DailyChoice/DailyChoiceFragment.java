@@ -1,5 +1,6 @@
 package com.zw.funvideo.DailyChoice;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.zw.funvideo.R;
 import com.zw.funvideo.model.ItemList;
+import com.zw.funvideo.videoplayer.PlayActivity;
 
 import java.util.List;
 
@@ -18,7 +20,7 @@ import java.util.List;
  * Created by zhangwei on 17/10/27.
  */
 
-public class DailyChoiceFragment extends Fragment implements DailyChoiceContract.View {
+public class DailyChoiceFragment extends Fragment implements DailyChoiceContract.View,DailyChoiceAdapter.Callbacks {
     private RecyclerView mRecyclerView;
     private DailyChoiceContract.Prezenter mPrezenter;
     private DailyChoiceAdapter mAdapter;
@@ -27,7 +29,7 @@ public class DailyChoiceFragment extends Fragment implements DailyChoiceContract
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPrezenter = new DailyChoicePrezenter(this);
-        mAdapter = new DailyChoiceAdapter();
+        mAdapter = new DailyChoiceAdapter(this);
     }
 
     @Nullable
@@ -48,5 +50,12 @@ public class DailyChoiceFragment extends Fragment implements DailyChoiceContract
     @Override
     public void onLoadDataSuccess(List<ItemList> itemLists) {
         mAdapter.addData(itemLists);
+    }
+
+    @Override
+    public void onVideoItemClicked(ItemList itemList) {
+        Intent intent = new Intent(getContext(), PlayActivity.class);
+        intent.putExtra("item", itemList);
+        startActivity(intent);
     }
 }

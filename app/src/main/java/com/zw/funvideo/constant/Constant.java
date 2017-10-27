@@ -6,4 +6,5 @@ package com.zw.funvideo.constant;
 
 public class Constant {
     public static final String BASE_URL ="http://baobab.kaiyanapp.com/api/";
+    public static final String CACHE_KEY = "cache_with_wifi";
 }
