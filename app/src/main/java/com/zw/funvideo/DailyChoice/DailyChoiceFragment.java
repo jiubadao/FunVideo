@@ -25,6 +25,11 @@ public class DailyChoiceFragment extends Fragment implements DailyChoiceContract
     private DailyChoiceContract.Prezenter mPrezenter;
     private DailyChoiceAdapter mAdapter;
 
+
+    public static DailyChoiceFragment newInstance(){
+        return new DailyChoiceFragment();
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
