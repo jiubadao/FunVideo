@@ -36,4 +36,18 @@
     <string name="shortcut_post_long_label">New Designer News story</string>
     <string name="shortcut_post_disabled">Log in to Designer News to post a new story</string>
 
+
+
+    <!-- data sources / filters -->
+    <string name="source_designer_news_popular">Popular Designer News</string>
+    <string name="source_designer_news_recent">Recent Designer News</string>
+    <string name="source_dribbble_popular">Popular Dribbbles</string>
+    <string name="source_dribbble_following">Dribbble following</string>
+    <string name="source_dribbble_user_likes">My Dribbble likes</string>
+    <string name="source_dribbble_user_shots">My Dribbble shots</string>
+    <string name="source_dribbble_recent">Recent Dribbbles</string>
+    <string name="source_dribbble_debuts">Dribbble Debuts</string>
+    <string name="source_dribbble_animated">Dribbble Animated</string>
+    <string name="source_dribbble_search_material_design">Material Design</string>
+    <string name="source_product_hunt">Product Hunt</string>
 </resources>
