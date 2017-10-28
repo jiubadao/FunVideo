@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -46,6 +47,9 @@ public class PlayActivity extends AppCompatActivity
 
     private ItemList item;
 
+    public Toolbar toolbar;
+    public ActionBar ab;
+
 
 
 
@@ -56,20 +60,31 @@ public class PlayActivity extends AppCompatActivity
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+
+
+       getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().getDecorView().setSystemUiVisibility(FLAG_HIDE_SYSTEM_UI);*/
+        getWindow().getDecorView().setSystemUiVisibility(FLAG_HIDE_SYSTEM_UI);
 
         setContentView(R.layout.play_activity);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+
         videoController = (VideoController) findViewById(R.id.video_controller);
         SurfaceView surfaceView = (SurfaceView) findViewById(R.id.surface_view);
-        //Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-     //   setSupportActionBar(toolbar);
+
 
         item = getIntent().getParcelableExtra("item");
         String playUrl = item.data.playUrl;
-        assert getSupportActionBar() != null;
-      //  getSupportActionBar().setTitle(item.data.title);
+
+        ab = getSupportActionBar();
+        if (ab != null){
+            ab.setDisplayHomeAsUpEnabled(true);
+            ab.setTitle(item.data.title);
+        }
 
         surfaceHolder = surfaceView.getHolder();
         surfaceHolder.addCallback(this);
