@@ -41,4 +41,7 @@ dependencies {
     compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
     compile 'com.danikula:videocache:2.7.0'
     compile 'com.ogaclejapan.smarttablayout:library:1.6.1@aar'
+
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 }
